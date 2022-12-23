@@ -19,12 +19,14 @@ public class ProductService {
 
         this.productRepository = productRepository;
     }
+
     // 상품 등록
     public Long join(Product product) {
         validateDuplicateMember(product); //중복 상품 검증
         productRepository.save(product);
         return product.getNo();
     }
+
     private void validateDuplicateMember(Product product) {
         productRepository.findByName(product.getName())
                 .ifPresent(p -> {
@@ -47,6 +49,7 @@ public class ProductService {
 
         return productRepository.findByName(productName);
     }
+
     public Optional<Product> findOne(Long productNo) {
 
         return productRepository.findByNo(productNo);
@@ -71,7 +74,6 @@ public class ProductService {
 
         productRepository.delete(product);
     }
-
 
 
 }
